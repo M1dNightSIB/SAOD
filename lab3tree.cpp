@@ -35,12 +35,12 @@ void build(RST** t, int D) // Buildfunc of tree
 		(*p)->left = (*p)->right = NULL;
 	}
 }
-
+/*
 void destroy(RST** root, int d)
 {
 	RST** p = root; 
 	RST *q, *r, *s;
-	while (*p)
+	while(*p != NULL)
 	{
 		if((*p)->data < d)
 			p = &((*p)->right);
@@ -50,19 +50,94 @@ void destroy(RST** root, int d)
 			break;
 	}
 	if(*p)
+	{
 		q = (*p);
-		if (q->left = NULL)
+		if(q->left = NULL)
 			*p = q->right;
 		else if(q->right = NULL)
 			*p = q->left;
-		else 
+		else 	
 			r = q->left;
 			s = q;
-		
-	
+		while(r->right != NULL)
+		{
+			s = r;
+			r = r->right;
+		}
+		s->right = r->left;
+		r->left = q->left;
+		r->right = q->right;
+		(*p) = r; 
+	}
+	if (q)	
+		delete q;
 	
 }
+*/
+void ShowOnward(RST *t, int l)
+{
+	if(t!=NULL)
+	{
 
+		ShowOnward(t->right, l+5);
+		for( int i=0;i<l;i++)
+			cout<<"  ";
+		cout<<t->data << endl;
+		ShowOnward(t->left, l+5);
+
+	}
+}
+
+
+void destroy(RST **root, int key)
+{
+	RST **p = root;
+	RST *q, *s, *r;
+	while(*p != NULL)
+	{
+		if (key<(*p)->data)
+			p = &((*p)->left);
+		else if (key>(*p)->data)
+			p = &((*p)->right);
+		else
+		{
+			cout<<"Found\n";
+			break;
+		}
+	}
+	if(*p != NULL)
+	{
+			q = *p;
+		if(q->left == NULL)
+			*p = q->right;
+		else if(q->right == NULL)
+			*p = q->left;
+		else
+		{
+				r = q->left;
+				s = q;		
+
+			if (r->right == NULL)
+			{
+				r->right = q->right;
+				*p = r;
+			}	
+			else
+			{
+				while(r->right != NULL)
+				{	
+					s = r;
+					r = r->right;
+				}
+				s->right = r->left;
+				r->left = q->left;
+				r->right = q->right;
+				*p = r;
+		}
+	}
+	delete q;
+	}
+}
 
 void Showleft(RST *t)
 {
@@ -105,7 +180,7 @@ int search(RST *root, int x)
 
 int main()
 {
-	int lenght, *mas;
+	int lenght, *mas, target, key;
 	srand(time(0));
 	cout<<"Please, input size of array mas[]: ";
 	cin>>lenght;
@@ -120,9 +195,33 @@ int main()
 
 	system("clear");
 
-	cout<<"\nRST"<<endl;
+	cout<<"\nRST*****************"<<endl;
 	for(int i = 0; i < lenght; i++)
 		build(&root, mas[i]);
-	Showleft(root);
+	ShowOnward(root, 3);
+	cout<<"\n";
+	cout<<"\n1. 1 Element\n2. Loop\n";
+	cin>>key;
+	switch(key)
+	{
+		case 1:  cout<<"Input target\n";
+			 cin>>target;
+			 destroy(&root, target);
+			 break;
+		case 2:  for(int i = 0; i < lenght; i++)
+			 {
+				cout<<"Input target\n";
+			 	cin>>target;
+				destroy(&root, target);
+				target = 0;
+				ShowOnward(root, 3);
+			 }
+			 break;
+	}
+	cout<<"Tree after clean:\n";
+	ShowOnward(root, 3);
+	cout<<endl;
+	
+	
 	
 }
