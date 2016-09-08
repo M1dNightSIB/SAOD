@@ -81,7 +81,9 @@ void ShowOnward(RST *t, int l)
 
 		ShowOnward(t->right, l+5);
 		for( int i=0;i<l;i++)
+		{
 			cout<<"  ";
+		}
 		cout<<t->data << endl;
 		ShowOnward(t->left, l+5);
 
@@ -107,7 +109,7 @@ void destroy(RST **root, int key)
 	}
 	if(*p != NULL)
 	{
-			q = *p;
+		q = *p;
 		if(q->left == NULL)
 			*p = q->right;
 		else if(q->right == NULL)
@@ -133,8 +135,8 @@ void destroy(RST **root, int key)
 				r->left = q->left;
 				r->right = q->right;
 				*p = r;
+			}
 		}
-	}
 	delete q;
 	}
 }
