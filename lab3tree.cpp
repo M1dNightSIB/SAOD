@@ -74,7 +74,7 @@ void destroy(RST** root, int d)
 	
 }
 */
-void ShowOnward(RST *t, int l)
+void ShowOnward(RST *t, int l) //Show tree
 {
 	if(t!=NULL)
 	{
@@ -91,7 +91,7 @@ void ShowOnward(RST *t, int l)
 }
 
 
-void destroy(RST **root, int key)
+void destroy(RST **root, int key) //Delete 
 {
 	RST **p = root;
 	RST *q, *s, *r;
@@ -141,7 +141,7 @@ void destroy(RST **root, int key)
 	}
 }
 
-void Showleft(RST *t)
+void Showleft(RST *t)//Show tree
 {
 	if (t)
 	{
@@ -151,7 +151,7 @@ void Showleft(RST *t)
 	}
 }
 
-bool checkRST(RST *p)
+bool checkRST(RST *p)/////////////////
 {
 	int flag=1;
 	if(p!=NULL && ((p->left)!=NULL && (p->data<=p->left->data || !(checkRST(p->left))) ||(p->right!=NULL && (p->data>=p->right->data || !checkRST(p->right)))))
@@ -159,7 +159,7 @@ bool checkRST(RST *p)
 		return flag;
 }
 
-int search(RST *root, int x)
+int search(RST *root, int x)///////////////
 {
 	RST *p = root;
 	
