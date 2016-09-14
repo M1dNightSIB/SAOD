@@ -59,19 +59,19 @@ void RL(AVL *&p)
 	q = p->right;
 	r = q->left;
 	if(r->bal>0)
-    	p->bal=-1;             
+    	p->bal = -1;             
     else
-    	p->bal=0;
+    	p->bal = 0;
      
     if(r->bal<0)
-     	q->bal=1;             
+     	q->bal = 1;             
     else
-     	q->bal=0;
-     r->bal=0;
-     p->right=r->left;
-     q->left=r->right;
-     r->left=p;
-     r->right=q;
+     	q->bal = 0;
+     r->bal = 0;
+     p->right = r->left;
+     q->left = r->right;
+     r->left = p;
+     r->right = q;
      p=r;  
 }
 
