@@ -60,12 +60,12 @@ void RL(AVL *&p)
 	r = q->left;
 	if(r->bal>0)
     	p->bal=-1;             
-     else
+    else
     	p->bal=0;
      
-     if(r->bal<0)
+    if(r->bal<0)
      	q->bal=1;             
-     else
+    else
      	q->bal=0;
      r->bal=0;
      p->right=r->left;
