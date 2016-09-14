@@ -58,10 +58,10 @@ void RL(AVL *&p)
 	AVL *q, *r;
 	q = p->right;
 	r = q->left;
-	 if(r->bal>0)
-    	 p->bal=-1;             
+	if(r->bal>0)
+    	p->bal=-1;             
      else
-    	 p->bal=0;
+    	p->bal=0;
      
      if(r->bal<0)
      	q->bal=1;             
